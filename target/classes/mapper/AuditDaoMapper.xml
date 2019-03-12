@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.tztfsoft.tztfDoc.dao.AuditDao">
+    <insert id="insertAudit" parameterType="com.tztfsoft.tztfDoc.entity.AuditBean">
+        INSERT INTO
+	    	sys_audit(
+	    		fMenuID,
+	    		fAuditName
+	    	)VALUES(
+	    		#{menuID},
+	    		#{name}
+	    	)
+	    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select @@identity as id
+		</selectKey>
+    </insert>
+    <update id="updateAudit" parameterType="com.tztfsoft.tztfDoc.entity.AuditBean">
+        update sys_audit
+        <set>
+            fAuditName = #{name}
+        </set>
+        where 
+        	fID = #{id}
+        
+    </update>
+    <delete id="deleteAuditItem" parameterType="Integer">
+        delete from sys_auditItem where fAuditID = #{id}
+    </delete>
+	<insert id="insertAuditItem" parameterType="java.util.List">
+	    INSERT INTO
+	    	sys_auditItem(
+	    		fAuditID,
+	    		fName,
+	    		fIndex,
+	    		fAuditor,
+	    		fChart
+	    	)VALUES
+	    	<foreach collection="list" item="item" index="index" separator=",">
+        	    (#{item.id},#{item.name},#{item.findex},#{item.auditor},#{item.chart})
+        	</foreach>	
+
+	</insert>
+	<select id="getAudit" parameterType="Integer" resultType="com.tztfsoft.tztfDoc.entity.AuditBean">
+	    SELECT 
+	    	fID AS id,
+	    	fMenuID AS menuID,
+	    	fAuditName AS name
+	    FROM 
+	    	sys_audit
+	    WHERE 
+	    	fMenuID = #{menuid}
+	</select>
+	<select id="getAuditItem" parameterType="Integer" resultType="com.tztfsoft.tztfDoc.entity.AuditItemBean">
+	    SELECT 
+	    	fAuditID AS id,
+	    	fName AS name,
+	    	fIndex AS findex,
+	    	fAuditor AS auditor,
+	    	fChart AS chart
+	    FROM 
+	    	sys_auditItem
+	    WHERE 
+	    	fAuditID = #{id}
+	</select>
+	<insert id="insertAuditRecord" parameterType="com.tztfsoft.tztfDoc.entity.AuditRecordBean">
+	    insert into 
+	    	sys_auditRecord(
+	    		fAuditID,
+	    		fMenuID,
+	    		fFileID,
+	    		fAuditor,
+	    		fIndex,
+	    		fAuditDate,
+	    		fAuditContent,
+	    		fAuditState
+	    	)values(
+	    		#{auditID},
+	    		#{menuID},
+	    		#{fileID},
+	    		#{auditor},
+	    		#{fIndex},
+	    		#{auditDate},
+	    		#{aditContent},
+	    		#{auditState}
+	    	)
+	</insert>
+	<select id="getRecordBymf" resultType="java.util.Map">
+	    select 
+	    		s.fAuditID AS auditID,
+	    		s.fMenuID AS menuID,
+	    		s.fFileID AS fileID,
+	    		u.fName AS auditor,
+	    		s.fIndex AS fIndex,
+	    		s.fAuditDate AS auditDate,
+	    		s.fAuditContent AS aditContent,
+	    		s.fAuditState AS auditState
+	    from 
+	    	sys_auditRecord as s 
+	    left join sys_user as u on u.fID = s.fAuditor 
+	    where  
+	      s.fMenuID = #{menuid} and s.fFileID = #{fileid} 
+	      order by s.fIndex asc
+	</select>
+	
+	<select id="getRecordBymff" resultType="java.util.Map">
+	    select 
+	    		s.fAuditID AS auditID,
+	    		s.fMenuID AS menuID,
+	    		s.fFileID AS fileID,
+	    		u.fName AS auditor,
+	    		u.fPath AS path,
+	    		s.fIndex AS fIndex,
+	    		s.fAuditDate AS auditDate,
+	    		s.fAuditContent AS aditContent,
+	    		s.fAuditState AS auditState
+	    from 
+	    	sys_auditRecord as s 
+	    left join sys_user as u on u.fID = s.fAuditor 
+	    where  
+	      s.fMenuID = #{menuid} and s.fFileID = #{fileid} 
+	      order by s.fIndex asc
+	</select>
+</mapper>
+
+
+

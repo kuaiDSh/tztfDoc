@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.tztfsoft.tztfDoc.dao.UserDao">
+	<select id="login" resultType="java.util.Map">
+	    SELECT 
+	    	fID AS id,
+	    	fName AS name
+	    FROM 
+	    	sys_user
+	    WHERE 
+	    	fUserName = #{username} AND fPassword = #{password}
+	</select>
+	<select id="getUser" resultType="java.util.Map">
+	    SELECT 
+	    	fID AS id,
+	    	CAST(fUserName AS VARCHAR) +'|'+CAST(fName AS VARCHAR) AS name
+	    FROM 
+	     sys_user	 
+	</select>
+	<insert id="insertUser" parameterType="com.tztfsoft.tztfDoc.entity.UserBean">
+	    insert into 
+	    	sys_user(
+	    		fUserName,
+	    		fPassword,
+	    		fDept,
+	    		fPhone,
+	    		fName,
+	    		fPath,
+	    		fNoAudit
+	    	)values(
+	    		#{username},
+	    		#{password},
+	    		#{dept},
+	    		#{phone},
+	    		#{name},
+	    		#{path},
+	    		#{noaudit}
+	    	)
+	    	<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+	    		select @@identity as id
+	    	</selectKey>
+	</insert>
+	<select id="getAllUser" resultType="com.tztfsoft.tztfDoc.entity.UserBean">
+	    select 
+	    	fID as id,
+	    	fUserName as username,
+    		fPassword as password,
+    		fDept as dept,
+    		fPhone as phone,
+    		fName as name, 
+    		fPath as path,
+    		fNoAudit as noaudit
+    	from 
+    	  sys_user
+	</select>
+	<select id="getIDByUsername" parameterType="String" resultType="java.util.Map">
+	    select 
+	      fID AS id
+	    from sys_user
+	    where 
+	     fUserName = #{username}
+	</select>
+	<select id="getuserByID" parameterType="Integer" resultType="java.util.Map">
+	     select 
+	    	fUserName as username,
+    		fName as name
+    	from 
+    	  sys_user
+    	where fID = #{id}
+	</select>
+	<update id="updateUser" parameterType="com.tztfsoft.tztfDoc.entity.UserBean">
+	    update sys_user 
+	    <set>
+	        fDept = #{dept},
+	        fPhone = #{phone},
+	        fName = #{name},
+	        fPath = #{path},
+	        fNoAudit = #{noaudit}
+	    </set>
+	    where 
+	    	fID = #{id}
+	</update>
+	<delete id="deleteUser" parameterType="Integer">
+	    delete from sys_user where fID = #{id}
+	</delete>
+	<select id="getByPWAndID" resultType="java.util.Map">
+	    select 
+	    	fID,
+	    	fName
+	    from 
+	    	sys_user
+	    where fID = #{id} AND fPassword = #{password}
+	</select>
+	
+	<update id="updatepassword">
+	    update 
+	    	 sys_user
+	   	<set>
+	   	    fPassword = #{password}
+	   	</set>
+	   	where 
+	   		fID = #{id}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+

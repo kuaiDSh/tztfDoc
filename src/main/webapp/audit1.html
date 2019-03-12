@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>审核配置(原画图)</title>
+<link rel="stylesheet" type="text/css" href="bootstarp/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/table/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/treeview/bootstrap-treeview.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/select/bootstrap-select.min.css">
+<script type="text/javascript" src="pJS/jquery.min.js"></script>
+<script type="text/javascript" src="bootstarp/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstarp/js/treeview/bootstrap-treeview.js"></script>
+<script type="text/javascript" src="bootstarp/js/select/bootstrap-select.js"></script>
+<script type="text/javascript" src="bootstarp/js/select/defaults-zh_CN.js"></script>
+<script type="text/javascript" src="pJS/raphael.js"></script>
+<script type="text/javascript" src="js/audit1.js"></script>
+</head>
+<body >
+<div class="container-fluid">
+  <div class="row">
+  	<div class="col-md-2">
+  	<div style="height: 5px;"></div>
+  	  <div id="treeview1"></div>
+  	</div>
+  	<div class="col-md-8" >
+  	<div style="height: 5px;"></div>
+  		<div id="holderp" style="width: 100%;height: 50px;">
+  			
+  		</div>
+  		<div id="holder" style="width: 100%;background: #eee;">
+  		</div>
+  	</div>
+  	<div class="col-md-2">
+  	  <div style="height: 5px;"></div>
+  	  <div class="panel panel-primary">
+		<div class="panel-heading">
+		  <h3 class="panel-title" >审核名称</h3>
+		</div>
+		<div class="panel-body">
+			<input id="auditTitle" type="text" class="form-control" placeholder="审核名称">
+		</div>
+	  </div>
+	  <div class="panel panel-primary">
+		<div class="panel-heading">
+		  <h3 class="panel-title" >审核节点属性</h3>
+		</div>
+		<div class="panel-body">
+			<input  id="auditName" type="text" class="form-control" placeholder="审核节点名称" >
+			<br>
+			<select id='user' class="form-control selectpicker" title="请选择审核人" data-live-search="true" multiple="multiple"></select> 
+		</div>
+	  </div>
+	  <button class="btn btn-lg btn-primary btn-block " id="auditok" type="button" onclick="auditok();" >确定配置</button>
+	 
+  	</div>
+  </div>
+
+	
+
+
+	</div>
+</body>
+</html>

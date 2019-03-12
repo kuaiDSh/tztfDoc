@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="bootstarp/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/table/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/treeview/bootstrap-treeview.css">
+<script type="text/javascript" src="pJS/jquery.min.js"></script>
+<script type="text/javascript" src="bootstarp/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="pJS/cookieUtil.js"></script>
+<script type="text/javascript" src="pJS/encrypt.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript">
+	function keyevent() {
+		if (event.keyCode == 13)
+			login();
+	}
+	document.onkeydown = keyevent;
+</script>
+</head>
+<body >
+ <div  >
+<form class="form-signin" role="form" style="margin-top: 200px;margin-left: 500px;margin-right: 500px;">
+  	<h2 class="form-signin-heading">文档管理</h2>
+  	<input id="username" type="text" class="form-control" placeholder="用户名">
+  	<br/>
+  	<input id="password" type="password" class="form-control" placeholder="密码">
+  	<br/>
+  	<br/>
+  	<button class="btn btn-lg btn-primary btn-block " type="button" onclick="login();">登录</button>
+  </form>
+</div>
+  
+
+
+	
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+	<meta charset="UTF-8">  
+	<title>用户管理</title>  
+	<link rel="stylesheet" type="text/css" href="bootstarp/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bootstarp/css/table/bootstrap-table.css">
+	<link rel="stylesheet" type="text/css" href="bootstarp/css/fileInput/fileinput.min.css">
+	<script type="text/javascript" src="pJS/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstarp/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstarp/js/table/bootstrap-table.js"></script>
+	<script type="text/javascript" src="bootstarp/js/table/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="bootstarp/js/fileInput/fileinput.js"></script>
+	<script type="text/javascript" src="bootstarp/js/fileInput/zh.js"></script>
+	<script type="text/javascript" src="pJS/cookieUtil.js"></script>
+	<script type="text/javascript" src="pJS/layer.js"></script>
+	<script type="text/javascript" src="js/user.js"></script>
+</head>  
+<body >
+	<div id="toolbar" style="margin-left: 5px;">
+	  <button type="button" id="btn_up" class="btn btn-primary" onclick="insert();">
+	    <span class="glyphicon glyphicon-plus"> 创建用户</span>
+	  </button>
+	  <button type="button" id="btn_audit"  class="btn btn-primary" onclick="update();">
+	    <span class="glyphicon glyphicon-wrench"> 修改用户</span>
+	  </button>
+	  <button type="button" id="btn_audit"  class="btn btn-primary" onclick="deleteuser();">
+	    <span class="glyphicon glyphicon-remove"> 删除用户</span>
+	  </button>
+	</div>
+	<div style="margin-left: 5px;margin-right: 5px;">
+		<table id="tab" ></table>
+	</div>
+	<!-- 新增模态框 -->
+	<div class="modal fade" id="usermodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<span id="usermodaltitle"></span>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<input id="upimg" type="file" class="file" data-show-preview="true" data-language="zh" 
+					data-show-Upload="false"  >
+				<div id="file-config" style="margin-top: 15px;">
+				
+				  <div class="container-fluid">
+					<div class="row">
+					  <div class="col-sm-6">
+					  <label>账号</label>
+					  <input type="text" id="username" class="form-control"  placeholder="登陆账号">
+					  </div>
+					  <div class="col-sm-6">
+					  <label>姓名</label>
+					  <input type="text" id="name" class="form-control" id="version" placeholder="姓名">
+					  </div>
+					</div>
+					<div class="row">
+					  <div class="col-sm-6">
+					  <label>部门</label>
+					  <input type="text" id="dept" class="form-control" id="version" placeholder="部门">
+					  </div>
+					  <div class="col-sm-6">
+					  <label>联系方式</label>
+					  <input type="text" id="phone" class="form-control" id="version" placeholder="联系方式">
+					  </div>
+					</div>
+					<!-- <div class="row">
+					  <div class="col-sm-6">
+					    <label>是否拥有反审核权限</label>
+						<select class="form-control" id="noaudit">
+						  <option value=0>是</option>
+						  <option value=1>否</option>
+						</select>
+					  </div>
+					</div> -->
+				  </div> 
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary" onclick="userok();">
+					提交
+				</button>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	
+	
+	<!-- 删除模态框 -->
+	<div class="modal fade" id="delmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel1">
+					<span > <b>删除</b></span>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<span id="del_span"></span>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary" onclick="del_ok();">
+					确认删除
+				</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>  
+
+</html>

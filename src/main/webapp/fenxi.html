@@ -1,0 +1,44 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+	<meta charset="UTF-8">  
+	<title>文档完成情况</title>  
+	<link rel="stylesheet" type="text/css" href="bootstarp/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bootstarp/css/table/bootstrap-table.css">
+	<script type="text/javascript" src="pJS/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstarp/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstarp/js/table/bootstrap-table.js"></script>
+	<script type="text/javascript" src="bootstarp/js/table/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="pJS/layer.js"></script>
+	<script type="text/javascript" src="js/fenxi.js"></script>
+</head>  
+<body >
+	
+	<table id="tab"></table>
+	<div class="modal fade" id="fenximodal" tabindex="-1" 
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width: 900px;height: 400px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<span id="fenxititle"></span>
+				</h4>
+			</div>
+			<div class="modal-body" >
+				<iframe id="iframe" style="width: 865px;height: 400px;"></iframe>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				
+			</div>
+		</div>
+	</div>
+	</div>
+	
+</body>  
+
+</html>

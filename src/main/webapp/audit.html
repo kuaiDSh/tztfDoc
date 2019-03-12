@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>审核配置</title>
+<link rel="stylesheet" type="text/css" href="bootstarp/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/table/bootstrap-table.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/treeview/bootstrap-treeview.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/select/bootstrap-select.min.css">
+<link rel="stylesheet" type="text/css" href="bootstarp/css/table/bootstrap-table.css">
+<script type="text/javascript" src="pJS/jquery.min.js"></script>
+<script type="text/javascript" src="bootstarp/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstarp/js/treeview/bootstrap-treeview.js"></script>
+<script type="text/javascript" src="bootstarp/js/select/bootstrap-select.js"></script>
+<script type="text/javascript" src="bootstarp/js/select/defaults-zh_CN.js"></script>
+<script type="text/javascript" src="bootstarp/js/table/bootstrap-table.js"></script>
+<script type="text/javascript" src="bootstarp/js/table/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="pJS/jquery.tablednd.js"></script>
+<script type="text/javascript" src="pJS/bootstrap-table-reorder-rows.js"></script>
+<script type="text/javascript" src="pJS/layer.js"></script>
+<script type="text/javascript" src="js/audit.js"></script>
+</head>
+<body >
+<div class="container-fluid">
+  <div class="row">
+  	<div class="col-md-3">
+  	<div style="height: 5px;"></div>
+  	  <div id="treeview1"></div>
+  	</div>
+  	<div class="col-md-9" >
+  	<div style="height: 5px;"></div>
+  	   <div>
+  	   	<input type="text" id="auditTitle" class="form-control" id="version" placeholder="审核名称">
+  	   </div>
+  		<div id="toolbar">
+  			<button type="button" id="btn_insert" class="btn btn-primary" onclick="insertitem();">
+		    <span class="glyphicon glyphicon-plus"> 创建节点</span>
+		  </button>
+		  <button type="button" id="btn_update"  class="btn btn-primary" onclick="updateitem();">
+		    <span class="glyphicon glyphicon-wrench"> 修改节点</span>
+		  </button>
+		  <button type="button" id="btn_del"  class="btn btn-primary" onclick="deleteitem();">
+		    <span class="glyphicon glyphicon-remove"> 删除节点</span>
+		  </button>
+		  <button type="button" id="btn_save"  class="btn btn-primary" onclick="saveaudit();">
+		    <span class="glyphicon glyphicon-ok"> 保存配置</span>
+		  </button>
+  		</div>
+  		<table id="tab" data-use-row-attr-func="true" data-reorderable-rows="true"></table>
+  	</div>
+  </div>
+</div>
+
+<!-- 新增模态框 -->
+	<div class="modal fade" id="auditmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<span id="modaltitle"></span>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div id="file-config" style="margin-top: 15px;">
+				  <div class="container-fluid">
+					<div class="row">
+					  <div class="col-sm-6">
+					  <label>节点名称</label>
+					  <input type="text" id="name" class="form-control"  placeholder="节点名称">
+					  </div>
+					  <div class="col-sm-6">
+					  <label>审核人</label>
+					  <select id="user" class="form-control selectpicker" title="请选择审核人" data-live-search="true" multiple="multiple"></select>
+					  </div>
+					</div>
+				  </div> 
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary" onclick="auditok();">
+					提交
+				</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

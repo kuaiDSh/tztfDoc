@@ -1,0 +1,84 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+	<meta charset="UTF-8">  
+	<title>通知</title>  
+	<link rel="stylesheet" type="text/css" href="bootstarp/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bootstarp/css/table/bootstrap-table.css">
+	<link rel="stylesheet" type="text/css" href="pCss/easyui.css"> 
+	<script type="text/javascript" src="pJS/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstarp/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstarp/js/table/bootstrap-table.js"></script>
+	<script type="text/javascript" src="bootstarp/js/table/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="pJS/cookieUtil.js"></script>
+	<script type="text/javascript" src="pJS/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/notice.js"></script>
+</head>  
+<body >
+	<!--  <div id="easyuiTab" class="easyui-tabs" 
+        	data-options="border:false,tabHeight:38,pill:true,plain:true" style="width:100%;height:500px;">
+    <div title="未完成" style="padding:0px;">   
+        <table id="tab"></table>
+    </div> 
+    <div title="已完成" style="padding:0px;">   
+       <table id="tab1"></table>
+    </div> 
+    </div> --> 
+    <div style="margin-top: 5px;"></div>
+	<div class="btn-group">
+		<button type="button" class="btn btn-default" onclick="btn(1);">未浏览</button>
+		<button type="button" class="btn btn-default" onclick="btn(0);">已浏览</button>
+		<button type="button" class="btn btn-default" onclick="del();">删除通知信息</button>
+	</div>
+	<div style="margin-top: 5px;"></div>
+	<table id="tab"></table>
+	<!-- 通知模态框 -->
+	<div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					<span class="glyphicon glyphicon-bell"> 通知</span>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<span id="span_notice"></span>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<!-- 删除模态框 -->
+	<div class="modal fade" id="delmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel1">
+					<span > <b>删除</b></span>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<span id="del_span"></span>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary" onclick="del_ok();">
+					确认删除
+				</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

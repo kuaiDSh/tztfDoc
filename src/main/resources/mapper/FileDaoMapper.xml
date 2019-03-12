@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.tztfsoft.tztfDoc.dao.FileDao">
+	<insert id="insertFileRecord" parameterType="com.tztfsoft.tztfDoc.entity.FileBean">
+	    INSERT INTO
+	    	sys_fileRecord(
+	    		fNewName,
+	    		fPath,
+	    		fOldName,
+	    		fDownNum,
+	    		fStatus,
+	    		fUserID,
+	    		fVersion,
+	    		fMenuID,
+	    		fDate
+	    	)VALUES(
+	    		#{newName},
+	    		#{path},
+	    		#{oldName},
+	    		#{downNum},
+	    		#{status},
+	    		#{userid},
+	    		#{version},
+	    		#{menuid},
+	    		#{fdate}
+	    	)
+	    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select @@identity as id
+		</selectKey>
+	</insert>
+	<update id="updateFileRecord" parameterType="com.tztfsoft.tztfDoc.entity.FileBean">
+	    UPDATE 
+	    	sys_fileRecord
+	    SET	
+	    	fNewName = #{newName},
+	    	fPath = #{path},
+	    	fOldName = #{oldName},
+	    	fDownNum = #{downNum},
+	    	fStatus = #{status},
+	    	fUserID = #{userid},
+	    	fVersion = #{version},
+	    	fMenuID = #{menuid},
+	    	fDate = #{fdate}
+	    WHERE 
+	    	fID = #{id}
+	</update>
+	<update id="updateFileStatus">
+	     UPDATE 
+	    	sys_fileRecord
+	    SET	
+	    	fStatus = #{status}
+	    WHERE 
+	    	fID = #{id}
+	</update>
+	<delete id="deleteFileRecord" parameterType="Integer">
+	    DELETE FROM sys_fileRecord WHERE fID = #{id}
+	</delete>
+	<select id="getFileRecord"  resultType="java.util.Map">
+	    select 
+	    		s.fID as id,
+	    		s.fNewName as newName,
+	    		s.fPath as path,
+	    		s.fOldName as oldName,
+	    		s.fDownNum as downNum,
+	    		s.fStatus as status,
+	    		u.fName as userid,
+	    		s.fVersion as version,
+	    		m.fName as menuid,
+	    		s.fDate as fdate
+	    	from sys_fileRecord as s 
+	    	left join sys_user as u on u.fID = s.fUserID 
+	    	left join sys_menu as m on m.fID = s.fMenuID
+	    where 
+	    	s.fMenuID = #{menuid} and s.fUserID = #{userid} 
+	    order by s.fDate desc
+	</select>
+	<select id="getFileRecordByMenu" parameterType="Integer"  resultType="java.util.Map">
+	   select 
+	    		s.fID as id,
+	    		s.fNewName as newName,
+	    		s.fPath as path,
+	    		s.fOldName as oldName,
+	    		s.fDownNum as downNum,
+	    		s.fStatus as status,
+	    		u.fName as userid,
+	    		s.fVersion as version,
+	    		m.fName as menuid,
+	    		s.fDate as fdate
+	    	from sys_fileRecord as s 
+	    	left join sys_user as u on u.fID = s.fUserID 
+	    	left join sys_menu as m on m.fID = s.fMenuID
+	    where 
+	    	s.fMenuID = #{menuid} 
+	    order by s.fDate desc
+	</select>
+	<select id="getFileRecordByMenuAndState" resultType="java.util.Map">
+	   select 
+	    		s.fID as id,
+	    		s.fNewName as newName,
+	    		s.fPath as path,
+	    		s.fOldName as oldName,
+	    		s.fDownNum as downNum,
+	    		s.fStatus as status,
+	    		u.fName as userid,
+	    		s.fVersion as version,
+	    		m.fName as menuid,
+	    		s.fDate as fdate
+	    	from sys_fileRecord as s 
+	    	left join sys_user as u on u.fID = s.fUserID 
+	    	left join sys_menu as m on m.fID = s.fMenuID
+	    where 
+	    	s.fMenuID = #{menuid} and s.fStatus = #{status} 
+	    order by s.fDate desc
+	</select>
+	<select id="getFileRecordByID" parameterType="Integer" resultType="java.util.Map">
+	    select 
+	    		s.fID as id,
+	    		s.fNewName as newName,
+	    		s.fPath as path,
+	    		s.fOldName as oldName,
+	    		s.fDownNum as downNum,
+	    		s.fStatus as status,
+	    		u.fName as userid,
+	    		s.fUserID as userid1,
+	    		s.fVersion as version,
+	    		m.fName as menuid,
+	    		s.fDate as fdate
+	    	from sys_fileRecord as s 
+	    	left join sys_user as u on u.fID = s.fUserID 
+	    	left join sys_menu as m on m.fID = s.fMenuID
+	    where 
+	    	s.fID = #{id}  
+	    order by s.fDate desc
+	</select>
+	<select id="fenxi" parameterType="Integer" resultType="com.tztfsoft.tztfDoc.entity.FileBean">
+	    select top 1
+	    		s.fID as id,
+	    		s.fNewName as newName,
+	    		s.fPath as path,
+	    		s.fOldName as oldName,
+	    		s.fDownNum as downNum,
+	    		s.fStatus as status,
+	    		s.fUserID  as userid,
+	    		s.fVersion as version,
+	    		s.fMenuID as menuid,
+	    		s.fDate as fdate
+	    	from sys_fileRecord as s 
+	    where 
+	    	s.fMenuID = #{menuid} and s.fStatus = 2
+	    order by s.fID desc
+	</select>
+</mapper>
+
+
+
